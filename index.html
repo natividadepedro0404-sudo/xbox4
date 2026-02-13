@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xbox Scanner Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="xbox-icon">🎮</div>
+                <h1>Xbox Scanner</h1>
+            </div>
+            <div class="header-controls">
+                <button class="btn-scan" id="scanButton" onclick="toggleScan()">
+                    <span id="scanButtonText">🚀 Iniciar Scan</span>
+                </button>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Offline</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <div class="stat-label">Total de Usuários</div>
+                    <div class="stat-value" id="totalScanned">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🎮</div>
+                <div class="stat-content">
+                    <div class="stat-label">Xbox Encontrados</div>
+                    <div class="stat-value" id="totalFound">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏠</div>
+                <div class="stat-content">
+                    <div class="stat-label">Servidores</div>
+                    <div class="stat-value" id="totalServers">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <div class="stat-label">Taxa de Detecção</div>
+                    <div class="stat-value" id="detectionRate">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-grid">
+            <!-- Servers List -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>🏠 Servidores</h2>
+                    <span class="badge" id="serverCount">0</span>
+                </div>
+                <div class="panel-content" id="serversList">
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>Nenhum servidor para escanear</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Xbox Users Found -->
+            <div class="panel wide">
+                <div class="panel-header">
+                    <h2>🎮 Usuários Xbox Encontrados</h2>
+                    <span class="badge" id="xboxCount">0</span>
+                </div>
+                <div class="panel-content" id="xboxUsersList">
+                    <div class="empty-state">
+                        <div class="empty-icon">🎯</div>
+                        <p>Nenhum usuário Xbox encontrado ainda</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
