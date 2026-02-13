@@ -18,6 +18,16 @@ if (!DISCORD_TOKEN) {
 
 const client = new Client();
 
+// Debug de conexão do Discord
+client.on('debug', info => {
+    if (info.includes('Gateway')) {
+        console.log('📡 [Discord Gateway]:', info);
+    }
+});
+
+client.on('error', err => console.error('❌ Erro no Cliente Discord:', err));
+client.on('warn', msg => console.warn('⚠️ Alerta Discord:', msg));
+
 // Cache de usuários verificados
 const checkedUsers = new Set();
 let isScanning = false;
