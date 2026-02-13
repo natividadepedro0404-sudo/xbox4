@@ -2,6 +2,15 @@ const { Client, MessageEmbed } = require('discord.js-selfbot-v13');
 const axios = require('axios');
 require('dotenv').config();
 
+// Tratamento de erros globais para evitar crashes silenciosos
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('❌ Rejeição não tratada em:', promise, 'razão:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+    console.error('❌ Exceção não capturada:', err);
+});
+
 // Importar dashboard
 const dashboard = require('./server');
 
@@ -13,7 +22,9 @@ if (!DISCORD_TOKEN) {
     console.error('❌ ERRO CRÍTICO: DISCORD_TOKEN não encontrado nas variáveis de ambiente!');
     console.log('⚠️  DICA: No painel do Render, vá em Settings -> Environment Variables e adicione o DISCORD_TOKEN.');
 } else {
-    console.log('✅ Token encontrado, tentando logar no Discord...');
+    console.log(`✅ Token detectado (Tamanho: ${DISCORD_TOKEN.trim().length} caracteres)`);
+    console.log(`💡 O token começa com: ${DISCORD_TOKEN.trim().substring(0, 5)}...`);
+    console.log('⏳ Tentando logar no Discord (aguarde)...');
 }
 
 const client = new Client();
