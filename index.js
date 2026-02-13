@@ -8,6 +8,14 @@ const dashboard = require('./server');
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 
+console.log('🚀 Iniciando script do Scanner...');
+if (!DISCORD_TOKEN) {
+    console.error('❌ ERRO CRÍTICO: DISCORD_TOKEN não encontrado nas variáveis de ambiente!');
+    console.log('⚠️  DICA: No painel do Render, vá em Settings -> Environment Variables e adicione o DISCORD_TOKEN.');
+} else {
+    console.log('✅ Token encontrado, tentando logar no Discord...');
+}
+
 const client = new Client();
 
 // Cache de usuários verificados
